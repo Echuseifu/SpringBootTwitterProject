@@ -8,11 +8,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer {
 
+        // this will allow to encrypt user passwords
         @Bean
         public BCryptPasswordEncoder passwordEncoder() {
-            BCryptPasswordEncoder bCryptPasswordEncoder =
-                    new BCryptPasswordEncoder();
-            return bCryptPasswordEncoder;
+
+            // bellow we are instantiating BCryptPasswordEncoder
+            // assigning it to variable
+            // and we will need to return it
+//            BCryptPasswordEncoder bCryptPasswordEncoder =
+//                    new BCryptPasswordEncoder();
+//            return bCryptPasswordEncoder;
+
+            // instead we can simply return the instantiation
+        return new BCryptPasswordEncoder();
+
         }
     }
 

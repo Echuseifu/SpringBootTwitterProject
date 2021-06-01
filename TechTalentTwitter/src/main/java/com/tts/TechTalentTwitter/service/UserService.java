@@ -30,23 +30,23 @@ public class UserService {
     }
 
 
-    //// page 30
-
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
+    // check with github
     public List<User> findAll(){
         return (List<User>) userRepository.findAll();
     }
+
 
     public void save(User user) {
         userRepository.save(user);
     }
 
 
-    // 31
-
+     // to create new user
+    // this method performs password hashing
     public User saveNewUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
@@ -56,11 +56,12 @@ public class UserService {
     }
 
 
-    //32
 
+    // to get currently logged in user
     public User getLoggedInUser() {
-        String loggedInUsername = SecurityContextHolder.
-                getContext().getAuthentication().getName();
+        String loggedInUsername = SecurityContextHolder. getContext()
+                .getAuthentication()
+                .getName();
 
         return findByUsername(loggedInUsername);
     }

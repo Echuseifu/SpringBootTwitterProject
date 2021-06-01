@@ -18,9 +18,11 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    // this autowires our encoder, thus injecting the dependency
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    // this autowires a reference ot our datasource
     @Autowired
     private DataSource dataSource;
 
