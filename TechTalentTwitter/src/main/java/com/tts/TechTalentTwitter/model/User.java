@@ -65,11 +65,13 @@ public class User {
 //    TODO(): Create Role class
     private Set<Role> roles;
 
+    // users and followers, many to many
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_followers", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "follower_id"))
     private List<User> followers;
 
+    // to get list of the users that  a particular user is following
     @ManyToMany(mappedBy = "followers")
     private List<User> following;
 

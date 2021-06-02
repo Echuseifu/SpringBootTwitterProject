@@ -1,8 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="UTF-8">
-    <title>User Profile</title>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <link rel="stylesheet" href="/custom.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/custom.js"></script>
+
 </head>
 <body>
 
@@ -14,6 +20,15 @@
 @<span th:text="${user.username}"></span></span></h2>
 <!-- add more code here -->
 <h5>Joined <span th:text="${#dates.format(user.createdAt, 'MMMM dd, yyyy')}"></span></h5>
+
+
+<!--follow and following method-->
+<form th:action="@{/follow/} + ${user.username}" th:if="${!following}" method="post">
+  <button style="float:right" type="Submit" class="btn btn-lg btn-success">Follow</button>
+</form>
+<form th:action="@{/unfollow/} + ${user.username}" th:if="${following}" method="post">
+  <button style="float:right" type="Submit" class="btn btn-lg btn-primary unfollow_btn">Following</button>
+</form>
 
 
 <h3>Tweets</h3>
