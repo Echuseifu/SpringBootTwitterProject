@@ -26,10 +26,14 @@ public class TweetService {
     @Autowired
     private TagRepository tagRepository;
 
-    public List<Tweet> findAll() {
-        List<Tweet> tweets = tweetRepository.findAllByOrderByCreatedAtDesc();
-        return tweets;
-    }
+
+
+public List<Tweet> findAll() {
+    List<Tweet> tweets = tweetRepository.findAllByOrderByCreatedAtDesc();
+    return formatTweets(tweets);
+}
+
+
 
     public List<Tweet> findAllByUser(User user) {
         List<Tweet> tweets = tweetRepository.findAllByUserOrderByCreatedAtDesc(user);
@@ -46,18 +50,12 @@ public class TweetService {
         return formatTweets(tweets);
     }
 
-//    public void save(Tweet tweet) {
-//        tweetRepository.save(tweet);
-//    }
 
-//  //   page 58
     public void save(Tweet tweet) {
         handleTags(tweet);
         tweetRepository.save(tweet);
     }
-//
-////    // page 58
-//
+
     private void handleTags(Tweet tweet) {
         List<Tag> tags = new ArrayList<Tag>();
         Pattern pattern = Pattern.compile("#\\w+");
@@ -92,7 +90,8 @@ public class TweetService {
             }
             for (String tag : tags) {
                 message = message.replaceAll(tag,
-                        "<a class=\"tag\" href=\"/tweets/" + tag.substring(1).toLowerCase() + "\">" + tag + "</a>");
+                        "<a class=\"tag\" href=\"/tweets/"
+                                + tag.substring(1).toLowerCase() + "\">" + tag + "</a>");
             }
             tweet.setMessage(message);
         }
@@ -109,7 +108,9 @@ public class TweetService {
                 if (link.length() > 23) {
                     shortenedLink = link.substring(0, 20) + "...";
                     message = message.replace(link,
-                            "<a class=\"tag\" href=\"" + link + "\" target=\"_blank\">" + shortenedLink + "</a>");
+                            "<a class=\"tag\" href=\""
+
+                                    + link + "\" target=\"_blank\">" + shortenedLink + "</a>");
                 }
                 tweet.setMessage(message);
             }
