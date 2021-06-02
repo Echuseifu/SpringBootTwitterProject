@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebMvcConfiguration implements WebMvcConfigurer {
 
         // this will allow to encrypt user passwords
+        // it can be injected into our service
         @Bean
         public BCryptPasswordEncoder passwordEncoder() {
 

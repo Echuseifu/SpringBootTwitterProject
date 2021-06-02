@@ -22,6 +22,16 @@ public class TweetController {
     @Autowired
     private TweetService tweetService;
 
+// here we are injecting the dependencies or
+//    you can either autowire both or inject them via a constructor both
+//    method  the above and this one works the same
+//    public TweetController(UserService userService, TweetService tweetService) {
+//        this.userService = userService;
+//        this.tweetService = tweetService;
+//    }
+
+
+
     // allow us to get all tweets
     @GetMapping(value= {"/tweets", "/"})
     public String getFeed(Model model){
@@ -40,7 +50,9 @@ public class TweetController {
     // handle the forms submission from the newTweet page
     // it gets the logged in user and associates them with the tweet
     @PostMapping(value = "/tweets")
-    public String submitTweetForm(@Valid Tweet tweet, BindingResult bindingResult, Model model) {
+    public String submitTweetForm(@Valid Tweet tweet,
+                                  BindingResult bindingResult,
+                                  Model model) {
         User user = userService.getLoggedInUser();
         if (!bindingResult.hasErrors()) {
             tweet.setUser(user);

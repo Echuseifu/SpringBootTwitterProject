@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
-  <title>Feed</title>
+  <title>Twitter Feed</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
   <link rel="stylesheet" href="/custom.css">
@@ -12,6 +12,8 @@
 </head>
 <body>
 <div class="container">
+
+  <div th:replace="fragments/navbar"></div>
   <h2>Tweets</h2>
   <div th:each="tweet:${tweetList}">
     <h5>@<span th:text="${tweet.user.username}"></span>

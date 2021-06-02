@@ -26,6 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    // these are queries defined in out application.props
     @Value("${spring.queries.users-query}")
     private String usersQuery;
 

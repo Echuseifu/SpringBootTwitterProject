@@ -13,9 +13,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Data
+ /*
+this annotation is a quick way of implementing the builder pattern
+ https://www.baeldung.com/creational-design-patterns#builder
+  */
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,9 +29,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    // below we are defining the name of the column in our database for this field
     @Column(name = "user_id")
     private Long id;
 
+    // @Email, @NotEmpty, @Pattern, @Length are field constraints on our model
     @Email(message = "Please provide a valid email")
     @NotEmpty(message = "Please provide an email")
     private String email;
@@ -46,14 +53,28 @@ public class User {
     private String lastName;
     private int active;
 
+    // hibernate annotation that will autogenerate a creation timestamp
     @CreationTimestamp
     private Date createdAt;
 
+    // @ManyToMany is a javax annotation that will define a relationship
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
 
+//    TODO(): Create Role class
     private Set<Role> roles;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_followers", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "follower_id"))
+    private List<User> followers;
+
+    @ManyToMany(mappedBy = "followers")
+    private List<User> following;
+
+
+
 
 
 }
