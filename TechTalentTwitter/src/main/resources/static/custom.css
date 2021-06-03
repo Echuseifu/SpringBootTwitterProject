@@ -13,11 +13,16 @@ color: pink;
 
 .welcome {
 color: pink;
+font-weight: bold;
 }
 
 
 .users{ color: gold;
 
+}
+
+.tweetsContaining{
+color: pink;
 }
 a.username {
     color: #00aced
