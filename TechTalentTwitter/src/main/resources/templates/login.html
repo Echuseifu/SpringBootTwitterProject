@@ -16,7 +16,7 @@
     <div th:replace="fragments/navbar"></div>
 </div>
 <div class="container">
-    <h2>Welcome!</h2>
+    <h2 class="welcome">Welcome!</h2>
     <form th:action="@{/login}" method="post"><br/>
         <input type="text" id="username" name="username" th:placeholder="Username" class="form-control"/> <br/>
         <input type="password" th:placeholder="Password" id="password" name="password" class="form-control"/> <br/>
