@@ -1,5 +1,22 @@
-body{
 
- background: #17A2B8 url(https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2Feverycolorbot&psig=AOvVaw08j1XTqfyTavzelCKWuXgQ&ust=1622730647583000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPDmrfSU-fACFQAAAAAdAAAAABAP);
+
+body{
+     background : #17A2B8 url(/images/twitter_400x400.png);
      background-size: cover;
+     background-repeat: no repeat;
+}
+
+     @media (min-width:1120px), (min-height: 630px){
+     body {background-size: auto;}
+
+     }
+
+
+
+a.username {
+    color: #00aced
+}
+
+a.tag {
+    color: #0084b4
 }
